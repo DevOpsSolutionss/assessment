@@ -21,35 +21,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build application
-        run: npm run build
-        
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: ./build
-
-
-  sonarcloud:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
+      - name: run app
+        run: node index.js
 
       - name: SonarQube Scanner
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=<your_project_key> \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+      #- name: SonarQube Scanner
+      #  run: |
+      #    sonar-scanner \
+      #      -Dsonar.projectKey= \
+      #      -Dsonar.sources=. \
+      #      -Dsonar.host.url=http://localhost:9000 \
+      #      -Dsonar.login=${{ secrets.SONAR_TOKEN }}
