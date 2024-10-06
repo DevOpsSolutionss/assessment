@@ -40,7 +40,7 @@ jobs:
       #    -Dsonar.login=$SONAR_TOKEN
 
       - name: Build Docker image
-        run: docker build -t 360513/nodejs-hello-world:latest .
+        run: sudo docker build -t 360513/nodejs-hello-world:latest .
   
       - name: Push Docker image
-        run: docker push 360513/nodejs-hello-world:latest
+        run: sudo docker push 360513/nodejs-hello-world:latest
