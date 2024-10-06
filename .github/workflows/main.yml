@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: run app
-        run: node index.js
+      #- name: run app
+      #  run: node index.js
 
       #- name: SonarQube Scanner
       #- uses: sonarsource/sonarqube-scan-action@v3
@@ -30,10 +30,10 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-      #- name: SonarQube Scanner
-      #  run: |
-      #    sonar-scanner \
-      #      -Dsonar.projectKey= \
-      #      -Dsonar.sources=. \
-      #      -Dsonar.host.url=http://localhost:9000 \
-      #      -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Scanner
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey= \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login= ${{ secrets.SONAR_TOKEN }}
