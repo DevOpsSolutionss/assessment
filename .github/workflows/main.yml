@@ -26,7 +26,7 @@ jobs:
 
       - name: Check SonarQube Server Accessibility
         run: |
-          curl -v 'http://0.0.0.0:9000'
+          curl -v ${{ secrets.SONAR_HOST_URL }}
    
       - name: SonarQube Analysis
         env:
@@ -38,4 +38,3 @@ jobs:
           -Dsonar.sources=. \
           -Dsonar.host.url=$SONAR_HOST_URL \
           -Dsonar.login=$SONAR_TOKEN
-          -Dsonar.verbose=true
