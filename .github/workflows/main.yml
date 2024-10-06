@@ -21,20 +21,26 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install SonarQube Scanner
-        run: npm install -g sonarqube-scanner
+      #- name: Install SonarQube Scanner
+      #  run: npm install -g sonarqube-scanner
+#
+      #- name: Check SonarQube Server Accessibility
+      #  run: |
+      #    curl -v ${{ secrets.SONAR_HOST_URL }}
+   #
+      #- name: SonarQube Analysis
+      #  env:
+      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #  run: |
+      #    sonar-scanner \
+      #    -Dsonar.projectKey=nodejs-hello-world \
+      #    -Dsonar.sources=. \
+      #    -Dsonar.host.url=$SONAR_HOST_URL \
+      #    -Dsonar.login=$SONAR_TOKEN
 
-      - name: Check SonarQube Server Accessibility
-        run: |
-          curl -v ${{ secrets.SONAR_HOST_URL }}
-   
-      - name: SonarQube Analysis
-        env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-          -Dsonar.projectKey=nodejs-hello-world \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=$SONAR_HOST_URL \
-          -Dsonar.login=$SONAR_TOKEN
+      - name: Build Docker image
+        run: docker build -t 360513/nodejs-hello-world:latest .
+  
+      - name: Push Docker image
+        run: docker push 360513/nodejs-hello-world:latest
