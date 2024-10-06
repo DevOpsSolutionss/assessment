@@ -23,10 +23,14 @@ jobs:
 
       - name: Install SonarQube Scanner
         run: npm install -g sonarqube-scanner
+
+      - name: Check SonarQube Server Accessibility
+        run: |
+          curl -v ${{ secrets.SONAR_HOST_URL }}
    
       - name: SonarQube Analysis
         env:
-          SONAR_HOST_URL: 'http://localhost:9000'
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
