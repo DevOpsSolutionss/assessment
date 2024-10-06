@@ -24,11 +24,11 @@ jobs:
       - name: run app
         run: node index.js
 
-      - name: SonarQube Scanner
-      - uses: sonarsource/sonarqube-scan-action@v3
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      #- name: SonarQube Scanner
+      #- uses: sonarsource/sonarqube-scan-action@v3
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       #- name: SonarQube Scanner
       #  run: |
