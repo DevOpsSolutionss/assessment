@@ -57,4 +57,7 @@ jobs:
         run: docker pull 360513/nodejs-hello-world:latest
 
       - name: docker run container
-        run: docker run -d -p 8080:80 360513/nodejs-hello-world:latest
+        run:  |
+          #docker stop  awesome_diffie
+          #docker rm awesome_diffie
+          docker run -d -p 8080:80 360513/nodejs-hello-world:latest
