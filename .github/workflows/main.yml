@@ -58,6 +58,6 @@ jobs:
 
       - name: docker run container
         run:  |
-          #docker stop  awesome_diffie
-          #docker rm awesome_diffie
+          docker stop  awesome_diffie
+          docker rm awesome_diffie
           docker run -d -p 8080:80 360513/nodejs-hello-world:latest
